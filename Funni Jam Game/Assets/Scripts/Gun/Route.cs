@@ -18,11 +18,15 @@ public class Route : MonoBehaviour
         controlPoints[3].position = endPoint;
 
         float offset = .2f + (Vector2.Distance(controlPoints[0].position, controlPoints[3].position) / 10);
-        Debug.Log(offset);
 
+        //Moves the middle points to the correct location
         Vector2 midPoint = MidPoint(controlPoints[0].gameObject, controlPoints[3].gameObject);
-        controlPoints[1].position = new Vector2(midPoint.x, midPoint.y + offset);
-        controlPoints[2].position = new Vector2(midPoint.x, midPoint.y + offset);
+        controlPoints[1].position = new Vector2(midPoint.x, midPoint.y + 1);
+        controlPoints[2].position = new Vector2(midPoint.x, midPoint.y + 1);
+
+        //Moves the two middle points apart
+        controlPoints[1].position = Vector2.MoveTowards(controlPoints[1].position, controlPoints[0].position, 1);
+        controlPoints[2].position = Vector2.MoveTowards(controlPoints[2].position, controlPoints[3].position, 1);
     }
 
     private void OnDrawGizmos()
