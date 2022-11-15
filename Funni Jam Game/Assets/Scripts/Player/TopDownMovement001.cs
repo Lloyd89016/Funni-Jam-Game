@@ -14,17 +14,25 @@ public class TopDownMovement001 : MonoBehaviour
     RaycastHit2D leftHit;
     RaycastHit2D rightHit;
 
+    float width;
+    float height;
+
     //there has to be a better way to do this...
+
+    private void Start()
+    {
+        width = GetComponent<SpriteRenderer>().bounds.size.x;
+        height = GetComponent<SpriteRenderer>().bounds.size.y;
+    }
+
     void Update()
     {
-        
-
         Move = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
 
-        topHit = Physics2D.Raycast(transform.position, transform.up, .55f, groundLayer);
-        bottomHit = Physics2D.Raycast(transform.position, -transform.up, .55f, groundLayer);
-        leftHit = Physics2D.Raycast(transform.position, -transform.right, .55f, groundLayer);
-        rightHit = Physics2D.Raycast(transform.position, transform.right, .55f, groundLayer);
+        topHit = Physics2D.Raycast(transform.position, transform.up, height/2, groundLayer);
+        bottomHit = Physics2D.Raycast(transform.position, -transform.up, height/2, groundLayer);
+        leftHit = Physics2D.Raycast(transform.position, -transform.right, width/2, groundLayer);
+        rightHit = Physics2D.Raycast(transform.position, transform.right, width/2, groundLayer);
 
         if (topHit.collider == true){
             if(Move.y > .01f){
