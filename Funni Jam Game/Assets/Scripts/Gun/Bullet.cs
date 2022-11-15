@@ -17,6 +17,12 @@ public class Bullet : MonoBehaviour
 
     private bool coroutineAllowed;
 
+    //Rotate Stuff
+    private Vector2 currentPosition;
+    private Vector2 previousPosition;
+    private Vector3 diff;
+    private float rotZ;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +38,7 @@ public class Bullet : MonoBehaviour
         {
             StartCoroutine(GoByTheRoute(routeToGo));
         }
+        RotateInMoveDirection();
     }
 
     private IEnumerator GoByTheRoute(int routeNum)
@@ -63,6 +70,22 @@ public class Bullet : MonoBehaviour
 
         //coroutineAllowed = true;
         Destroy(gameObject);
+    }
 
+    void RotateInMoveDirection()
+    {
+        currentPosition = transform.position;
+        Vector3 currentDirection = (currentPosition - previousPosition).normalized;
+        previousPosition = transform.position;
+
+        //Rotate in move direction
+        diff = currentDirection;
+        //normalize difference  
+        diff.Normalize();
+
+        //calculate rotation
+        rotZ = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
+        //apply to object
+        transform.rotation = Quaternion.Euler(0f, 0f, rotZ + 90);
     }
 }

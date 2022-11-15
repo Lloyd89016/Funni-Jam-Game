@@ -24,13 +24,15 @@ public class Gun : MonoBehaviour
 
     void SpawnBullet()
     {
+        //Sets up the route for the bullet
         routeScript.Setup(WhereToShoot());
 
+        //Instanitates the bullet and sets variables
         GameObject Bullet = Instantiate(bullet);
         Bullet.transform.position = transform.position;
         Bullet.GetComponent<Bullet>().routes[0] = route.transform;
 
-        Bullet.GetComponent<Bullet>().speedModifier = 2 + (4.3f - (Vector2.Distance(transform.position, WhereToShoot()) / 2.5f));
+        Bullet.GetComponent<Bullet>().speedModifier = 3 + (4.3f - (Vector2.Distance(transform.position, WhereToShoot()) / 2.5f));
     }
 
     Vector2 WhereToShoot()
