@@ -20,6 +20,7 @@ public class Gun : MonoBehaviour
 
     void Update()
     {
+        //Cooldown
         cooldown -= coolDownSpeed * Time.deltaTime;
 
         if (cooldown <= 0)
@@ -39,16 +40,17 @@ public class Gun : MonoBehaviour
         routeScript.Setup(WhereToShoot());
 
         //Instanitates the bullet and sets variables
-        GameObject Bullet = Instantiate(bullet);
-        Bullet.transform.position = transform.position;
-        Bullet.GetComponent<Bullet>().routes[0] = route.transform;
+        GameObject new_bullet = Instantiate(bullet);
+        new_bullet.transform.position = transform.position;
+        new_bullet.GetComponent<Bullet>().routes[0] = route.transform;
 
         //Sets bullet speed based off of how far away the bullet target is
-        Bullet.GetComponent<Bullet>().speedModifier = BulletSpeed();
+        new_bullet.GetComponent<Bullet>().speedModifier = BulletSpeed();
     }
 
     Vector2 WhereToShoot()
     {
+        //Figures out the end point of the bullet
         RaycastHit2D hit = ShootRay();
         if(hit == true)
         {
@@ -62,6 +64,7 @@ public class Gun : MonoBehaviour
 
     RaycastHit2D ShootRay()
     {
+        //Shoots a ray in the direction of the mouse
         Vector3 raycastDir = gunAimPoint.position - transform.position;
         float distance = Vector2.Distance(transform.position, gunAimPoint.position);
 
@@ -70,6 +73,7 @@ public class Gun : MonoBehaviour
 
     float BulletSpeed()
     {
+        //Calculates how fast the bullet should go based off of distance from the player
         float bulletSpeed = 3;
         float x = 13f - (Vector2.Distance(transform.position, WhereToShoot()));
         x /= 13;

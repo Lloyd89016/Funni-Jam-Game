@@ -32,6 +32,7 @@ public class Explosion : MonoBehaviour
         Collider2D[] colliders = Physics2D.OverlapCircleAll(explosionPos, radius);
         foreach (Collider2D hit in colliders)
         {
+            DealDamage(hit);
             AddExplosionForce(hit, explosionPos);
         }
     }
@@ -43,6 +44,15 @@ public class Explosion : MonoBehaviour
         {
             //There is no build "AddExplosionForce2D", so this uses a custom extention
             rb.AddExplosionForce2D(power, explosionPos, radius);
+        }
+    }
+
+    void DealDamage(Collider2D hit)
+    {
+        Health new_healthScript = hit.gameObject.GetComponent<Health>();
+        if(new_healthScript != null)
+        {
+            new_healthScript.health -= 1;
         }
     }
 }
