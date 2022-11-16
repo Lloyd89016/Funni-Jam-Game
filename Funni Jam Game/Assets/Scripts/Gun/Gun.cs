@@ -8,6 +8,7 @@ public class Gun : MonoBehaviour
     public GameObject route;
     Route routeScript;
     public Transform gunAimPoint;
+    public float cooldown = .08f;
 
     void Start()
     {
@@ -16,10 +17,17 @@ public class Gun : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Mouse0))
+        cooldown -= 1f * Time.deltaTime;
+
+        if (cooldown <= 0)
         {
-            SpawnBullet();
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                cooldown = 1;
+                SpawnBullet();
+            }
         }
+  
     }
 
     void SpawnBullet()
