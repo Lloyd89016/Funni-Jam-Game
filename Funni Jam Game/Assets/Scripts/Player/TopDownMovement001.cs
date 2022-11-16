@@ -4,60 +4,35 @@ using UnityEngine;
 
 public class TopDownMovement001 : MonoBehaviour
 {
-    [SerializeField] float moveSpeed = 5f;
-    [SerializeField] LayerMask groundLayer;
+    Rigidbody2D body;
 
-    [SerializeField] Vector3 Move;
+    float horizontal;
+    float vertical;
+    float moveLimiter = 0.7f;
 
-    RaycastHit2D topHit;
-    RaycastHit2D bottomHit;
-    RaycastHit2D leftHit;
-    RaycastHit2D rightHit;
+    public float runSpeed = 20.0f;
 
-    float width;
-    float height;
-
-    //there has to be a better way to do this...
-
-    private void Start()
+    void Start()
     {
-        width = GetComponent<SpriteRenderer>().bounds.size.x;
-        height = GetComponent<SpriteRenderer>().bounds.size.y;
+        body = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
-        Move = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
+        // Gives a value between -1 and 1
+        horizontal = Input.GetAxis("Horizontal"); // -1 is left
+        vertical = Input.GetAxis("Vertical"); // -1 is down
+    }
 
-        topHit = Physics2D.Raycast(transform.position, transform.up, height/2, groundLayer);
-        bottomHit = Physics2D.Raycast(transform.position, -transform.up, height/2, groundLayer);
-        leftHit = Physics2D.Raycast(transform.position, -transform.right, width/2, groundLayer);
-        rightHit = Physics2D.Raycast(transform.position, transform.right, width/2, groundLayer);
-
-        if (topHit.collider == true){
-            if(Move.y > .01f){
-                Move.y = 0;
-            }
-        }        
-        if(bottomHit.collider == true){
-            if(Move.y < -.01f)
-            {
-                Move.y = 0;
-            }
-        }
-        if(leftHit.collider == true){
-            if(Move.x < -.01f)
-            {
-                Move.x = 0;
-            }
-        }        
-        if(rightHit.collider == true){
-            if(Move.x > .01f)
-            {
-                Move.x = 0;
-            }
+    void FixedUpdate()
+    {
+        if (horizontal != 0 && vertical != 0) // Check for diagonal movement
+        {
+            // limit movement speed diagonally, so you move at 70% speed
+            horizontal *= moveLimiter;
+            vertical *= moveLimiter;
         }
 
-        transform.position += Move * Time.deltaTime * moveSpeed;
+        body.velocity = new Vector2(horizontal * runSpeed, vertical * runSpeed);
     }
 }

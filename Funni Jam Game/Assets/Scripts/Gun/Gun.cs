@@ -8,7 +8,10 @@ public class Gun : MonoBehaviour
     public GameObject route;
     Route routeScript;
     public Transform gunAimPoint;
-    public float cooldown = .08f;
+    public LayerMask shootLayerMask;
+
+    public float coolDownSpeed;
+    float cooldown = .08f;
 
     void Start()
     {
@@ -17,7 +20,7 @@ public class Gun : MonoBehaviour
 
     void Update()
     {
-        cooldown -= 1f * Time.deltaTime;
+        cooldown -= coolDownSpeed * Time.deltaTime;
 
         if (cooldown <= 0)
         {
@@ -41,7 +44,6 @@ public class Gun : MonoBehaviour
         Bullet.GetComponent<Bullet>().routes[0] = route.transform;
 
         //Sets bullet speed based off of how far away the bullet target is
-        //Bullet.GetComponent<Bullet>().speedModifier = 3 + (4.3f - (Vector2.Distance(transform.position, WhereToShoot()) / 2.5f));
         Bullet.GetComponent<Bullet>().speedModifier = BulletSpeed();
     }
 
@@ -63,7 +65,7 @@ public class Gun : MonoBehaviour
         Vector3 raycastDir = gunAimPoint.position - transform.position;
         float distance = Vector2.Distance(transform.position, gunAimPoint.position);
 
-        return Physics2D.Raycast(transform.position, raycastDir, distance);
+        return Physics2D.Raycast(transform.position, raycastDir, distance, shootLayerMask);
     }
 
     float BulletSpeed()

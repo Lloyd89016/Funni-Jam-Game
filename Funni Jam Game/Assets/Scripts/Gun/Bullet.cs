@@ -23,6 +23,10 @@ public class Bullet : MonoBehaviour
     private Vector3 diff;
     private float rotZ;
 
+    //Bullet Explosion
+    public GameObject bulletExplosion;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -69,7 +73,7 @@ public class Bullet : MonoBehaviour
         }
 
         //coroutineAllowed = true;
-        Destroy(gameObject);
+        Explode();
     }
 
     void RotateInMoveDirection()
@@ -87,5 +91,14 @@ public class Bullet : MonoBehaviour
         rotZ = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
         //apply to object
         transform.rotation = Quaternion.Euler(0f, 0f, rotZ + 90);
+    }
+
+    void Explode()
+    {
+        //Spawns in the explosion object
+        GameObject explosion = Instantiate(bulletExplosion);
+        explosion.transform.position = transform.position;
+
+        Destroy(gameObject);
     }
 }
