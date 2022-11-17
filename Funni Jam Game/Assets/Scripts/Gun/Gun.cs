@@ -12,10 +12,12 @@ public class Gun : MonoBehaviour
 
     public float coolDownSpeed;
     float cooldown = .08f;
+    float distanceFromGunAimPount;
 
     void Start()
     {
         routeScript = route.GetComponent<Route>();
+        distanceFromGunAimPount = Vector2.Distance(transform.position, gunAimPoint.position);
     }
 
     void Update()
@@ -74,9 +76,9 @@ public class Gun : MonoBehaviour
     float BulletSpeed()
     {
         //Calculates how fast the bullet should go based off of distance from the player
-        float bulletSpeed = 3;
-        float x = 13f - (Vector2.Distance(transform.position, WhereToShoot()));
-        x /= 13;
+        float bulletSpeed = 2f;
+        float x = distanceFromGunAimPount - (Vector2.Distance(transform.position, WhereToShoot()));
+        x /= distanceFromGunAimPount;
         bulletSpeed += x;
         return bulletSpeed;
     }

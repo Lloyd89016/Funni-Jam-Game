@@ -27,7 +27,6 @@ public class Bullet : MonoBehaviour
     public GameObject bulletExplosion;
 
 
-    // Start is called before the first frame update
     void Start()
     {
         routeToGo = 0;
@@ -35,7 +34,6 @@ public class Bullet : MonoBehaviour
         coroutineAllowed = true;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (coroutineAllowed)

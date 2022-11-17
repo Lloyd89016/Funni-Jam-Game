@@ -10,16 +10,15 @@ public class DestructibleObject : Health
     {
         if (health <= 0)
         {
-            Die();
+            Invoke("GetDestroyd", .1f);
         }
     }
 
-    void Die()
+    void GetDestroyd()
     {
         GameObject new_explosion = Instantiate(destroyedObject);
         new_explosion.transform.position = transform.position;
 
         Destroy(gameObject);
     }
-
 }
