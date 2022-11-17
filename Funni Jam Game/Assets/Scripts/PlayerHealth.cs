@@ -5,10 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class PlayerHealth : Health
 {
-
+    public HealthBarScript healthBar;
+    public int maxHealth;
     void Start()
     {
         
+        maxHealth = health;
+    }
+
+    private void FixedUpdate()
+    {
+        healthBar.SetHealth(health);
     }
 
     void Update()
@@ -16,6 +23,13 @@ public class PlayerHealth : Health
         if (health <= 0)
         {
             Die();
+            
+        }
+
+        // if health goes over maxhealth, set it to max health
+        if(health >= maxHealth)
+        {
+            health = maxHealth;
         }
     }
 
@@ -24,4 +38,17 @@ public class PlayerHealth : Health
         //Reloads the scene
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
+    #region debugButton
+    // debug button heal
+  public  void heal()
+    {
+        health += 10;
+    }
+    // debug button damage
+   public void damage()
+    {
+        health -= 10;
+    }
+    #endregion
 }
