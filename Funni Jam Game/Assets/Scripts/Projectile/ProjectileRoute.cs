@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Route : MonoBehaviour
+public class ProjectileRoute : MonoBehaviour
 {
     [SerializeField] private Transform[] controlPoints;
 
@@ -10,10 +10,10 @@ public class Route : MonoBehaviour
 
     private Vector2 gizmosPosition;
 
-    public void Setup(Vector2 endPoint)
+    public void Setup(Vector2 startPoint, Vector2 endPoint)
     {
         //Moves all of the control points to their correct locations
-        controlPoints[0].position = gunPos.position;
+        controlPoints[0].position = startPoint;
 
         controlPoints[3].position = endPoint;
 
