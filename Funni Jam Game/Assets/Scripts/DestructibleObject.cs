@@ -10,11 +10,11 @@ public class DestructibleObject : Health
     {
         if (health <= 0)
         {
-            Invoke("GetDestroyd", .1f);
+            Invoke("GetDestroyed", .1f);
         }
     }
 
-    void GetDestroyd()
+    void GetDestroyed()
     {
         GameObject new_explosion = Instantiate(destroyedObject);
         new_explosion.transform.position = transform.position;
