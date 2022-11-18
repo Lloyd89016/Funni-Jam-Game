@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Projectile : MonoBehaviour
 {
     [SerializeField]
     public Transform[] routes;
@@ -14,9 +14,6 @@ public class Bullet : MonoBehaviour
     private Vector2 objectPosition;
 
     public float speedModifier;
-
-    private bool coroutineAllowed;
-
     //Rotate Stuff
     private Vector2 currentPosition;
     private Vector2 previousPosition;
@@ -24,29 +21,23 @@ public class Bullet : MonoBehaviour
     private float rotZ;
 
     //Bullet Explosion
-    public GameObject bulletExplosion;
+    public GameObject projectileExplosion;
 
 
     void Start()
     {
         routeToGo = 0;
         tParam = 0f;
-        coroutineAllowed = true;
+        StartCoroutine(GoByTheRoute(routeToGo));
     }
 
     void Update()
     {
-        if (coroutineAllowed)
-        {
-            StartCoroutine(GoByTheRoute(routeToGo));
-        }
         RotateInMoveDirection();
     }
 
     private IEnumerator GoByTheRoute(int routeNum)
     {
-        coroutineAllowed = false;
-
         Vector2 p0 = routes[routeNum].GetChild(0).position;
         Vector2 p1 = routes[routeNum].GetChild(1).position;
         Vector2 p2 = routes[routeNum].GetChild(2).position;
@@ -70,7 +61,6 @@ public class Bullet : MonoBehaviour
             routeToGo = 0;
         }
 
-        //coroutineAllowed = true;
         Explode();
     }
 
@@ -94,7 +84,7 @@ public class Bullet : MonoBehaviour
     void Explode()
     {
         //Spawns in the explosion object
-        GameObject explosion = Instantiate(bulletExplosion);
+        GameObject explosion = Instantiate(projectileExplosion);
         explosion.transform.position = transform.position;
 
         Destroy(gameObject);
