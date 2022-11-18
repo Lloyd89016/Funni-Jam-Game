@@ -9,7 +9,6 @@ public class Explosion : MonoBehaviour
     public float power = 10.0F;
 
     private ParticleSystem particleEffect;
-    public MonoBehaviour a;
 
     void Start()
     {
@@ -35,7 +34,7 @@ public class Explosion : MonoBehaviour
         {
             DealDamage(hit);
             AddExplosionForce(hit, explosionPos);
-            DisableScripts(hit);
+            DisableMovement(hit);
         }
     }
 
@@ -58,13 +57,12 @@ public class Explosion : MonoBehaviour
         }
     }
 
-    void DisableScripts(Collider2D hit)
+    void DisableMovement(Collider2D hit)
     {
-        TopDownMovement001 playerMovement = hit.gameObject.GetComponent<TopDownMovement001>();
-        if (playerMovement != null)
+        DisableMovement disableMovement = hit.gameObject.GetComponent<DisableMovement>();
+        if (disableMovement != null)
         {
-
+            disableMovement.DisableScript();
         }
-        //MonoBehaviour enemyMovement = hit.gameObject.GetComponent<>();
     }
 }

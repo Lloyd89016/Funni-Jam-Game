@@ -17,7 +17,8 @@ public class ProjectileRoute : MonoBehaviour
 
         controlPoints[3].position = endPoint;
 
-        float offset = .4f + (Vector2.Distance(controlPoints[0].position, controlPoints[3].position) / 6);
+        //How much the middle should be rasied
+        float offset = .6f + (Vector2.Distance(controlPoints[0].position, controlPoints[3].position) / 6);
 
         //Moves the middle points to the correct location
         Vector2 midPoint = MidPoint(controlPoints[0].gameObject, controlPoints[3].gameObject);

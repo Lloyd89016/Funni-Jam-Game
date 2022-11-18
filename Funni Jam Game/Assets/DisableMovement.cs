@@ -4,10 +4,18 @@ using UnityEngine;
 
 public class DisableMovement : MonoBehaviour
 {
-    MonoBehaviour scriptToDisable;
+    public MonoBehaviour scriptToDisable;
+    public float timeBeforeRenable;
 
-    public void disableScript()
+    //When the object gets hit by an explotion, its movement script gets disabled so that it can be moved by explotions
+    public void DisableScript()
     {
+        scriptToDisable.enabled = false;
+        Invoke("EnableScript", timeBeforeRenable);
+    }
 
+    void EnableScript()
+    {
+        scriptToDisable.enabled = true;
     }
 }
