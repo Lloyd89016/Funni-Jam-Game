@@ -83,9 +83,12 @@ public class Projectile : MonoBehaviour
 
     void Explode()
     {
-        //Spawns in the explosion object
-        GameObject explosion = Instantiate(projectileExplosion);
-        explosion.transform.position = transform.position;
+        if(projectileExplosion != null)
+        {
+            //Spawns in the explosion object
+            GameObject explosion = Instantiate(projectileExplosion);
+            explosion.transform.position = transform.position;
+        }
 
         Destroy(gameObject);
     }

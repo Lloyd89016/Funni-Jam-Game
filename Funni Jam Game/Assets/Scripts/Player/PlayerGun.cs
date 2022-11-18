@@ -6,12 +6,7 @@ public class PlayerGun : Shoot
 {
     public float coolDownSpeed;
     float cooldown = .08f;
-
-
-    void Start()
-    {
-        
-    }
+    public Transform gunAimPoint;
 
     void Update()
     {
@@ -23,7 +18,7 @@ public class PlayerGun : Shoot
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
                 cooldown = 1;
-                ShootProjectile();
+                ShootProjectile(gunAimPoint.position);
             }
         }
     }

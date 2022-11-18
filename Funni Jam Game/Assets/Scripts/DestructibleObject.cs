@@ -16,8 +16,11 @@ public class DestructibleObject : Health
 
     void GetDestroyed()
     {
-        GameObject new_explosion = Instantiate(destroyedObject);
-        new_explosion.transform.position = transform.position;
+        if(destroyedObject != null)
+        {
+            GameObject new_explosion = Instantiate(destroyedObject);
+            new_explosion.transform.position = transform.position;
+        }
 
         Destroy(gameObject);
     }

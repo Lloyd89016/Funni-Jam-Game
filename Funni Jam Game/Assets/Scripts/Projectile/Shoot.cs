@@ -9,25 +9,16 @@ public class Shoot : MonoBehaviour
 
     public GameObject projectileRoute;
     public ProjectileRoute projectileRouteScript;
-    Vector3 aimPoint;
-
 
     void Start()
     {
-        projectileRoute = GameObject.FindGameObjectWithTag("ProjectileRoute");
         projectileRouteScript = projectileRoute.GetComponent<ProjectileRoute>();
     }
 
-    private void Update()
-    {
-        aimPoint = transform.position + transform.forward * 10.5f;
-        Debug.Log(aimPoint);
-    }
-
-    protected void ShootProjectile()
+    protected void ShootProjectile(Vector3 aimPoint)
     {
         //Sets up the route for the bullet
-        projectileRouteScript.Setup(transform.position, WhereToShoot());
+        projectileRouteScript.Setup(transform.position, WhereToShoot(aimPoint));
 
         //Instanitates the bullet and sets variables
         GameObject new_projectile = Instantiate(projectile);
@@ -35,13 +26,13 @@ public class Shoot : MonoBehaviour
         new_projectile.GetComponent<Projectile>().routes[0] = projectileRoute.transform;
 
         //Sets bullet speed based off of how far away the bullet target is
-        new_projectile.GetComponent<Projectile>().speedModifier = BulletSpeed();
+        new_projectile.GetComponent<Projectile>().speedModifier = BulletSpeed(aimPoint);
     }
 
-    Vector2 WhereToShoot()
+    Vector2 WhereToShoot(Vector3 aimPoint)
     {
         //Figures out the end point of the bullet
-        RaycastHit2D hit = ShootRay();
+        RaycastHit2D hit = ShootRay(aimPoint);
         if(hit == true)
         {
             return hit.point;
@@ -52,7 +43,7 @@ public class Shoot : MonoBehaviour
         }
     }
 
-    RaycastHit2D ShootRay()
+    RaycastHit2D ShootRay(Vector3 aimPoint)
     {
         //Shoots a ray in the direction of the mouse
         Vector3 raycastDir = aimPoint - transform.position;
@@ -61,12 +52,12 @@ public class Shoot : MonoBehaviour
         return Physics2D.Raycast(transform.position, raycastDir, distance, shootLayerMask);
     }
 
-    float BulletSpeed()
+    float BulletSpeed(Vector3 aimPoint)
     {
         //Calculates how fast the bullet should go based off of distance from the player
         float bulletSpeed = 2f;
-        float x = 10.5f - (Vector2.Distance(transform.position, WhereToShoot()));
-        x /= 10.5f;
+        float x = Vector2.Distance(aimPoint, transform.position) - (Vector2.Distance(transform.position, WhereToShoot(aimPoint)));
+        x /= Vector2.Distance(aimPoint, transform.position);
         bulletSpeed += x;
         return bulletSpeed;
     }

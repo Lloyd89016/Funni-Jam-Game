@@ -12,22 +12,22 @@ public class EnemyThrow : Shoot
         player = GameObject.FindGameObjectWithTag("Player").transform;
         InvokeRepeating("CanShoot", Random.Range(.005f, 1.005f), 1);
     }
-    
+
     void CanShoot()
     {
         float dist = Vector2.Distance(player.position, transform.position);
-        if(dist <= 7 && DetectWall() == false)
+        if(dist <= 15 && DetectWall() == false)
         {
-            ShootProjectile();
+            ShootProjectile(player.position);
         }
     }
 
     RaycastHit2D DetectWall()
     {
-        //Shoots a ray in the direction of the player
+        //Shoots a ray in the direction of the player to make sure it is not shooting at a wall
         Vector3 raycastDir = player.position - transform.position;
-        float distance = Vector2.Distance(transform.position, transform.position + transform.forward * 10.5f);
+        float distance = Vector2.Distance(player.position, transform.position);
 
-        return Physics2D.Raycast(transform.position, raycastDir, distance, shootLayerMask);
+        return Physics2D.Raycast(transform.position, raycastDir, distance, wallLayerMask);
     }
 }

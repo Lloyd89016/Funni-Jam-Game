@@ -7,9 +7,9 @@ public class PlayerHealth : Health
 {
     public HealthBarScript healthBar;
     public int maxHealth;
+
     void Start()
-    {
-        
+    {    
         maxHealth = health;
     }
 
@@ -22,8 +22,7 @@ public class PlayerHealth : Health
     {
         if (health <= 0)
         {
-            Die();
-            
+            Die();  
         }
 
         // if health goes over maxhealth, set it to max health
@@ -41,12 +40,12 @@ public class PlayerHealth : Health
 
     #region debugButton
     // debug button heal
-  public  void heal()
+    public void heal()
     {
         health += 10;
     }
     // debug button damage
-   public void damage()
+    public void damage()
     {
         health -= 10;
     }

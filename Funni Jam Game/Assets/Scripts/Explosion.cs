@@ -9,17 +9,18 @@ public class Explosion : MonoBehaviour
     public float power = 10.0F;
 
     private ParticleSystem particleEffect;
+    public MonoBehaviour a;
 
     void Start()
     {
         particleEffect = GetComponent<ParticleSystem>();
 
         Explode();
-    }    
-    
+    }
+
     void Update()
     {
-        if(particleEffect.isStopped)
+        if (particleEffect.isStopped)
         {
             Destroy(gameObject);
         }
@@ -34,6 +35,7 @@ public class Explosion : MonoBehaviour
         {
             DealDamage(hit);
             AddExplosionForce(hit, explosionPos);
+            DisableScripts(hit);
         }
     }
 
@@ -50,9 +52,19 @@ public class Explosion : MonoBehaviour
     void DealDamage(Collider2D hit)
     {
         Health new_healthScript = hit.gameObject.GetComponent<Health>();
-        if(new_healthScript != null)
+        if (new_healthScript != null)
         {
             new_healthScript.health -= 1;
         }
+    }
+
+    void DisableScripts(Collider2D hit)
+    {
+        TopDownMovement001 playerMovement = hit.gameObject.GetComponent<TopDownMovement001>();
+        if (playerMovement != null)
+        {
+
+        }
+        //MonoBehaviour enemyMovement = hit.gameObject.GetComponent<>();
     }
 }
