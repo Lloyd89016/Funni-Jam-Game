@@ -12,6 +12,8 @@ public class TopDownMovement001 : MonoBehaviour
 
     public float runSpeed = 20.0f;
 
+    public Animator playerAnimator;
+
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
@@ -22,6 +24,16 @@ public class TopDownMovement001 : MonoBehaviour
         // Gives a value between -1 and 1
         horizontal = Input.GetAxis("Horizontal"); // -1 is left
         vertical = Input.GetAxis("Vertical"); // -1 is down
+
+        //Animation
+        if(Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
+        {
+            playerAnimator.SetBool("isWalking", true);
+        }
+        else
+        {
+            playerAnimator.SetBool("isWalking", false);
+        }
     }
 
     void FixedUpdate()
