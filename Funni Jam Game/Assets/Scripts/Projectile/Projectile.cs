@@ -7,6 +7,8 @@ public class Projectile : MonoBehaviour
     [SerializeField]
     public Transform[] routes;
 
+    public screenShake screenshake;
+
     private int routeToGo;
 
     private float tParam;
@@ -31,8 +33,10 @@ public class Projectile : MonoBehaviour
         StartCoroutine(GoByTheRoute(routeToGo));
     }
 
+
     void Update()
     {
+     
         RotateInMoveDirection();
     }
 
@@ -89,6 +93,9 @@ public class Projectile : MonoBehaviour
             GameObject explosion = Instantiate(projectileExplosion);
             explosion.transform.position = transform.position;
         }
+
+        //call screen shake
+        screenshake.ShakeEvent();
 
         Destroy(gameObject);
     }
