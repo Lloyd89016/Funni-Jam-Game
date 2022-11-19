@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: Restaurant 1_0
+  m_Name: Restaurant_0
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 2134850094, guid: c09c200403b9d414d98d169277a4bb11, type: 3}
+  m_Sprite: {fileID: 1722513369, guid: 32f1a071c27033246af099800b47f99f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1

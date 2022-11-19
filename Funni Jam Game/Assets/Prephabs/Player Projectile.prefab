@@ -13,8 +13,6 @@ GameObject:
   - component: {fileID: 379319089997302783}
   - component: {fileID: 4955343205241083222}
   - component: {fileID: 5164961334931913492}
-  - component: {fileID: 1287475624611547875}
-  - component: {fileID: 1162471867083115970}
   m_Layer: 0
   m_Name: Player Projectile
   m_TagString: Untagged
@@ -103,9 +101,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   routes:
   - {fileID: 0}
-  screenshake: {fileID: 1162471867083115970}
   speedModifier: 0
   projectileExplosion: {fileID: 5988232008574291760, guid: 2224ac24b8e4a3a4b9f62d252ce224de, type: 3}
+  playScreenShake: 1
 --- !u!96 &4955343205241083222
 TrailRenderer:
   serializedVersion: 2
@@ -178,8 +176,8 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0, g: 0, b: 0, a: 1}
-      key1: {r: 0.18867922, g: 0.18867922, b: 0.18867922, a: 1}
+      key0: {r: 0.79215693, g: 0.5803922, b: 0.26666668, a: 1}
+      key1: {r: 0.9811321, g: 0.81728065, b: 0.5775721, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -227,83 +225,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.5102563, y: 0.4922496, z: 0.2}
   m_Center: {x: -0.013756864, y: 0.011005491, z: 0}
---- !u!114 &1287475624611547875
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6710696016102910579}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ImpulseDefinition:
-    m_ImpulseChannel: 1
-    m_ImpulseShape: 3
-    m_CustomImpulseShape:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    m_ImpulseDuration: 0.2
-    m_ImpulseType: 0
-    m_DissipationRate: 0.25
-    m_RawSignal: {fileID: 0}
-    m_AmplitudeGain: 1
-    m_FrequencyGain: 1
-    m_RepeatMode: 0
-    m_Randomize: 1
-    m_TimeEnvelope:
-      m_AttackShape:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
-      m_DecayShape:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
-      m_AttackTime: 0
-      m_SustainTime: 0.2
-      m_DecayTime: 0.7
-      m_ScaleWithImpact: 1
-      m_HoldForever: 0
-    m_ImpactRadius: 100
-    m_DirectionMode: 0
-    m_DissipationMode: 2
-    m_DissipationDistance: 100
-    m_PropagationSpeed: 343
-  m_DefaultVelocity: {x: 0.07, y: 0.07, z: 0}
---- !u!114 &1162471867083115970
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6710696016102910579}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7b8f4b5ceb584e44a06f23335d83059, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shake:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1287475624611547875}
-        m_TargetAssemblyTypeName: Cinemachine.CinemachineImpulseSource, Cinemachine
-        m_MethodName: GenerateImpulse
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2

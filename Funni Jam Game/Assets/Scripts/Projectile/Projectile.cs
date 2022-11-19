@@ -7,8 +7,6 @@ public class Projectile : MonoBehaviour
     [SerializeField]
     public Transform[] routes;
 
-    public screenShake screenshake;
-
     private int routeToGo;
 
     private float tParam;
@@ -23,7 +21,9 @@ public class Projectile : MonoBehaviour
     private float rotZ;
 
     //Bullet Explosion
-    public GameObject projectileExplosion;
+    [SerializeField] GameObject projectileExplosion;
+
+    [SerializeField] bool playScreenShake;
 
 
     void Start()
@@ -94,8 +94,11 @@ public class Projectile : MonoBehaviour
             explosion.transform.position = transform.position;
         }
 
-        //call screen shake
-        screenshake.ShakeEvent();
+        if(playScreenShake == true)
+        {
+            //call screen shake
+            FindObjectOfType<screenShake>().ShakeEvent();
+        }
 
         Destroy(gameObject);
     }

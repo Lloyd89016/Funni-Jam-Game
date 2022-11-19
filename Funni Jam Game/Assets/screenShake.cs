@@ -6,7 +6,6 @@ public class screenShake : MonoBehaviour
 {
     public UnityEvent shake;
 
-
     public void ShakeEvent()
     {
         shake.Invoke();
