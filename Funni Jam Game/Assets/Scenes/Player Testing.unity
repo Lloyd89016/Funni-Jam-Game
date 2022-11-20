@@ -25580,6 +25580,7 @@ GameObject:
   - component: {fileID: 719924607}
   - component: {fileID: 719924606}
   - component: {fileID: 719924609}
+  - component: {fileID: 719924610}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -25753,6 +25754,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &719924610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 719924602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94d4d5c23e912df4086ed5ad0913321a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shoot: {fileID: 765281377}
+  CupCake: {fileID: 124557092064935028, guid: 90342fa2c1afa43429c9b28584ff2efb, type: 3}
+  Doughnut: {fileID: 6710696016102910579, guid: c2737e87b10b61443b24d9b1d6bdefaa, type: 3}
 --- !u!1 &732803570
 GameObject:
   m_ObjectHideFlags: 0
@@ -68213,7 +68229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7b8f4b5ceb584e44a06f23335d83059, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shake:
+  explode:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 6466635784531983694}
@@ -68228,6 +68244,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  shoot:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &6466635784531983694
 MonoBehaviour:
   m_ObjectHideFlags: 0
