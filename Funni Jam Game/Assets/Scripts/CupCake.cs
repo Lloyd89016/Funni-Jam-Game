@@ -2,54 +2,54 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
+public class CupCake : MonoBehaviour
 {
-    [SerializeField]
+   
     public Transform[] routes;
 
     private int routeToGo;
 
+    private bool useCurve = false;
+
     private float tParam;
 
-    [SerializeField] Vector2 objectPosition;
+  
 
-    public float speedModifier;
+    public GameObject aimPoint;
+
+    private Vector2 objectPosition;
+
+    public float speedModifier = 1;
     //Rotate Stuff
     private Vector2 currentPosition;
     private Vector2 previousPosition;
     private Vector3 diff;
     private float rotZ;
-
+    [SerializeField] Rigidbody2D rb;
     //Bullet Explosion
     [SerializeField] GameObject projectileExplosion;
 
     [SerializeField] bool playScreenShake;
 
-    [SerializeField] LayerMask targetLayer;
-
-    [SerializeField] Transform objectSize;
-
 
     void Start()
-    {
-        routeToGo = 0;
-        tParam = 0f;
-        StartCoroutine(GoByTheRoute(routeToGo));
+    {if (useCurve == true)
+        {
+            routeToGo = 0;
+            tParam = 0f;
+            StartCoroutine(GoByTheRoute(routeToGo));
+        }
+        Vector3 target = aimPoint.transform.position;
+        target.x = target.x * 1000;
+        target.y = target.y * 1000;
     }
+
 
     void Update()
     {
-        RotateInMoveDirection();
-
-        //Checks to see if the bullet is touching the enemy
-        Collider2D hit = Physics2D.OverlapBox(transform.position, objectSize.localScale, 0, targetLayer);
-
-        if (hit != null)
-        {
-            Explode();
-        }
+        float speed = speedModifier * Time.deltaTime;
+        transform.Translate(aimPoint.transform.position * speed);
     }
-
     private IEnumerator GoByTheRoute(int routeNum)
     {
         Vector2 p0 = routes[routeNum].GetChild(0).position;
@@ -78,33 +78,18 @@ public class Projectile : MonoBehaviour
         Explode();
     }
 
-    void RotateInMoveDirection()
-    {
-        currentPosition = transform.position;
-        Vector3 currentDirection = (currentPosition - previousPosition).normalized;
-        previousPosition = transform.position;
 
-        //Rotate in move direction
-        diff = currentDirection;
-        //normalize difference  
-        diff.Normalize();
-
-        //calculate rotation
-        rotZ = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
-        //apply to object
-        transform.rotation = Quaternion.Euler(0f, 0f, rotZ + 90);
-    }
 
     void Explode()
     {
-        if(projectileExplosion != null)
+        if (projectileExplosion != null)
         {
             //Spawns in the explosion object
             GameObject explosion = Instantiate(projectileExplosion);
             explosion.transform.position = transform.position;
         }
 
-        if(playScreenShake == true)
+        if (playScreenShake == true)
         {
             //call screen shake
             FindObjectOfType<screenShake>().ShakeEvent();

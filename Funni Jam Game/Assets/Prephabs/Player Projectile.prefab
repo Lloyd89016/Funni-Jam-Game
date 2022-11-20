@@ -184,21 +184,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee751e85566b16d418d64b36c44bccd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doCurve: 0
-  playScreenShake: 1
-  projectileExplosion: {fileID: 5988232008574291760, guid: 2224ac24b8e4a3a4b9f62d252ce224de, type: 3}
   routes:
   - {fileID: 0}
+  objectPosition: {x: 0, y: 0}
+  speedModifier: 0
+  projectileExplosion: {fileID: 5988232008574291760, guid: 2224ac24b8e4a3a4b9f62d252ce224de, type: 3}
+  playScreenShake: 1
   targetLayer:
     serializedVersion: 2
     m_Bits: 512
-  speedModifier: 0
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 887
   objectSize: {fileID: 2053298882}
-  speed: 15
-  aimPoint: {x: 0, y: 0, z: 0}
 --- !u!96 &4955343205241083222
 TrailRenderer:
   serializedVersion: 2

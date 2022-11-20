@@ -192,12 +192,7 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 128
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 0
   objectSize: {fileID: 2106765659}
-  doCurve: 1
-  speed: 0
 --- !u!96 &573543159
 TrailRenderer:
   serializedVersion: 2
