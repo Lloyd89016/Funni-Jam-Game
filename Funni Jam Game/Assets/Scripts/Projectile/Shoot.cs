@@ -24,6 +24,7 @@ public class Shoot : MonoBehaviour
         GameObject new_projectile = Instantiate(projectile);
         new_projectile.transform.position = transform.position;
         new_projectile.GetComponent<Projectile>().routes[0] = projectileRoute.transform;
+        new_projectile.GetComponent<Projectile>().aimPoint = aimPoint;
 
         //Sets bullet speed based off of how far away the bullet target is
         new_projectile.GetComponent<Projectile>().speedModifier = BulletSpeed(aimPoint);

@@ -25580,7 +25580,6 @@ GameObject:
   - component: {fileID: 719924607}
   - component: {fileID: 719924606}
   - component: {fileID: 719924609}
-  - component: {fileID: 719924610}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -25648,7 +25647,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 719924602}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.27, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -25754,21 +25753,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &719924610
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 719924602}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94d4d5c23e912df4086ed5ad0913321a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shoot: {fileID: 765281377}
-  CupCake: {fileID: 124557092064935028, guid: 90342fa2c1afa43429c9b28584ff2efb, type: 3}
-  Doughnut: {fileID: 6710696016102910579, guid: c2737e87b10b61443b24d9b1d6bdefaa, type: 3}
 --- !u!1 &732803570
 GameObject:
   m_ObjectHideFlags: 0
@@ -26698,7 +26682,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 743362021}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.27, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -27302,16 +27286,16 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 765281374}
-  m_LocalRotation: {x: -0, y: -0, z: 0.5665499, w: 0.8240275}
-  m_LocalPosition: {x: -0.028, y: -0.676, z: 0}
-  m_LocalScale: {x: 0.9999999, y: 0.9999999, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.64800024, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1275666312}
   - {fileID: 1316674487}
   m_Father: {fileID: 2133029465}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -355.3}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &765281377
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27324,14 +27308,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76a5f456c8ddef447bb0ad749bd63100, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 6710696016102910579, guid: c2737e87b10b61443b24d9b1d6bdefaa, type: 3}
+  projectile: {fileID: 124557092064935028, guid: 90342fa2c1afa43429c9b28584ff2efb, type: 3}
   shootLayerMask:
     serializedVersion: 2
     m_Bits: 887
   projectileRoute: {fileID: 2073461813}
   projectileRouteScript: {fileID: 2073461816}
   coolDownSpeed: 3.5
-  gunAimPoint: {fileID: 1669583408}
+  aimPoint: {fileID: 1669583408}
 --- !u!1 &766455153
 GameObject:
   m_ObjectHideFlags: 0
@@ -42399,9 +42383,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1275666310}
-  m_LocalRotation: {x: -0, y: -0, z: 0.18077669, w: 0.98352426}
-  m_LocalPosition: {x: 0.171, y: 0.029, z: 0.0052468707}
-  m_LocalScale: {x: -0.07447116, y: 0.16128807, z: 0.83423716}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.07590005, y: 0.20499986, z: 0}
+  m_LocalScale: {x: -0.117135696, y: 0.080109216, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 765281376}
@@ -43296,14 +43280,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1316674486}
-  m_LocalRotation: {x: -0, y: -0, z: 0.18077667, w: 0.9835242}
-  m_LocalPosition: {x: 0.061, y: 0.027, z: 0.0052468707}
-  m_LocalScale: {x: -0.19344269, y: 0.08736121, z: 0.83423716}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.005799994, y: 0.11483991, z: 0}
+  m_LocalScale: {x: -0.10099644, y: 0.26158565, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 765281376}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 20.83}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1316674488
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -50812,7 +50796,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1531718197}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.27, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -53932,7 +53916,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1669583408}
   m_Layer: 0
-  m_Name: Gun Aim Point
+  m_Name: Aim Point
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -53946,8 +53930,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1669583407}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.18000032, y: -10.100003, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: -10.150003, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2133029465}
@@ -67641,8 +67625,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2133029463}
-  m_LocalRotation: {x: -0, y: -0, z: 0.77075016, w: -0.63713753}
-  m_LocalPosition: {x: 0.362, y: -0.045, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0.377, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -67650,7 +67634,7 @@ Transform:
   - {fileID: 1669583408}
   m_Father: {fileID: 719924604}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 361.94}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!114 &2133029466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68231,19 +68215,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explode:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6466635784531983694}
-        m_TargetAssemblyTypeName: Cinemachine.CinemachineImpulseSource, Cinemachine
-        m_MethodName: GenerateImpulse
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   shoot:
     m_PersistentCalls:
       m_Calls: []
