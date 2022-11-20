@@ -4,53 +4,96 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    [SerializeField]
+    [Header("Genral")]
+
+    [SerializeField] bool doCurve;
+
+    [SerializeField] Transform objectSize;
+
+    //Bullet Explosion
+    [SerializeField] bool playScreenShake;
+    [SerializeField] GameObject projectileExplosion;
+
+    [Header("Curve Stuff")]
+
     public Transform[] routes;
+
+    [SerializeField] LayerMask targetLayer;
+
+    public float speedModifier;
 
     private int routeToGo;
 
     private float tParam;
 
-    [SerializeField] Vector2 objectPosition;
+    Vector2 objectPosition;
 
-    public float speedModifier;
     //Rotate Stuff
     private Vector2 currentPosition;
     private Vector2 previousPosition;
     private Vector3 diff;
     private float rotZ;
 
-    //Bullet Explosion
-    [SerializeField] GameObject projectileExplosion;
+    [Header("Stright Shot")]
 
-    [SerializeField] bool playScreenShake;
+    [SerializeField] LayerMask layerMask;
 
-    [SerializeField] LayerMask targetLayer;
+    [SerializeField] float speed;
 
-    [SerializeField] Transform objectSize;
+    private Vector2 target;
 
+    public Vector3 aimPoint;
 
     void Start()
     {
         routeToGo = 0;
         tParam = 0f;
-        StartCoroutine(GoByTheRoute(routeToGo));
+
+        if(doCurve == true)
+        {
+            StartCoroutine(FollowCurve(routeToGo));
+        }
+        else
+        {
+            target = aimPoint - transform.position;
+            target *= 10;
+        }
     }
 
     void Update()
     {
         RotateInMoveDirection();
 
-        //Checks to see if the bullet is touching the enemy
-        Collider2D hit = Physics2D.OverlapBox(transform.position, objectSize.localScale, 0, targetLayer);
-
-        if (hit != null)
+        //If the projectile is doing a curve it only needs to detect the target, if not then it needs to detect everything
+        if(doCurve == true)
         {
-            Explode();
+            //Checks to see if the projectile is touching the enemy
+            Collider2D hit = Physics2D.OverlapBox(transform.position, objectSize.localScale, 0, targetLayer);
+
+            if (hit != null)
+            {
+                Explode();
+            }
+        }
+        else if(doCurve == false)
+        {
+            //Checks to see if the projectile is touching anything
+            Collider2D hit2 = Physics2D.OverlapBox(transform.position, objectSize.localScale, 0, layerMask);
+
+            if (hit2 != null)
+            {
+                Explode();
+            }
+        }
+
+        //Moves the projectile
+        if(doCurve == false)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
         }
     }
 
-    private IEnumerator GoByTheRoute(int routeNum)
+    private IEnumerator FollowCurve(int routeNum)
     {
         Vector2 p0 = routes[routeNum].GetChild(0).position;
         Vector2 p1 = routes[routeNum].GetChild(1).position;
