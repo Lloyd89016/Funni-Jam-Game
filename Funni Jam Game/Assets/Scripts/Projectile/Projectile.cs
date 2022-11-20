@@ -11,7 +11,7 @@ public class Projectile : MonoBehaviour
 
     private float tParam;
 
-    private Vector2 objectPosition;
+    [SerializeField] Vector2 objectPosition;
 
     public float speedModifier;
     //Rotate Stuff
@@ -25,6 +25,10 @@ public class Projectile : MonoBehaviour
 
     [SerializeField] bool playScreenShake;
 
+    [SerializeField] LayerMask targetLayer;
+
+    [SerializeField] Transform objectSize;
+
 
     void Start()
     {
@@ -33,11 +37,17 @@ public class Projectile : MonoBehaviour
         StartCoroutine(GoByTheRoute(routeToGo));
     }
 
-
     void Update()
     {
-     
         RotateInMoveDirection();
+
+        //Checks to see if the bullet is touching the enemy
+        Collider2D hit = Physics2D.OverlapBox(transform.position, objectSize.localScale, 0, targetLayer);
+
+        if (hit != null)
+        {
+            Explode();
+        }
     }
 
     private IEnumerator GoByTheRoute(int routeNum)

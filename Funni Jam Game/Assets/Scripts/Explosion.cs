@@ -5,8 +5,8 @@ using UnityEngine;
 public class Explosion : MonoBehaviour
 {
     //Explosion settings
-    public float radius = 5.0F;
-    public float power = 10.0F;
+    [SerializeField] float radius = 5.0F;
+    [SerializeField] float power = 10.0F;
 
     private ParticleSystem particleEffect;
 

@@ -10,9 +10,9 @@ public class TopDownMovement001 : MonoBehaviour
     float vertical;
     float moveLimiter = 0.7f;
 
-    public float runSpeed = 20.0f;
+    [SerializeField] float runSpeed = 20.0f;
 
-    public Animator playerAnimator;
+    [SerializeField] Animator playerAnimator;
 
     void Start()
     {
@@ -22,8 +22,8 @@ public class TopDownMovement001 : MonoBehaviour
     void Update()
     {
         // Gives a value between -1 and 1
-        horizontal = Input.GetAxis("Horizontal"); // -1 is left
-        vertical = Input.GetAxis("Vertical"); // -1 is down
+        horizontal = Input.GetAxisRaw("Horizontal"); // -1 is left
+        vertical = Input.GetAxisRaw("Vertical"); // -1 is down
 
         //Animation
         if(Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)

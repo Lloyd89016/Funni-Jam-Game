@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class EnemyThrow : Shoot
 {
-    public Transform player;
-    public LayerMask wallLayerMask;
+    [SerializeField] Transform player;
+    [SerializeField] LayerMask wallLayerMask;
     Vector3 offset;
 
     void Start()
