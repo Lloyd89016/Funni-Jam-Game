@@ -7,9 +7,12 @@ public class EnemyThrow : Shoot
     [SerializeField] Transform player;
     [SerializeField] LayerMask wallLayerMask;
     Vector3 offset;
-
+    [SerializeField] PlayerHealth playerHealth;
     void Start()
     {
+        maxCooldown = cooldown;
+        cooldown = 0;
+
         player = GameObject.FindGameObjectWithTag("Player").transform;
         InvokeRepeating("CanShoot", Random.Range(.005f, 1.005f), 1);
 
@@ -17,10 +20,30 @@ public class EnemyThrow : Shoot
         offset = new Vector2(Random.Range(-1, 1), Random.Range(-1, 1));
     }
 
+    public int damage = 1;
+    [SerializeField] float cooldown = 10f;
+    [SerializeField] float maxCooldown = 10f;
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (cooldown <= 0)
+        {
+            if (collision.gameObject.tag == ("Player"))
+            {
+                playerHealth.TakeDamage(damage);
+                cooldown = maxCooldown;
+            }
+        }
+
+    }
+    private void Update()
+    {
+        cooldown -= .1f * Time.deltaTime;
+    }
     void CanShoot()
     {
         float dist = Vector2.Distance(player.position + offset, transform.position);
-        if(dist <= 15 && dist >= 4 && DetectWall() == false)
+        if(dist <= 15 && dist >= .5 && DetectWall() == false)
         {
             ShootProjectile(player.position + offset);
         }

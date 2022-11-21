@@ -28,6 +28,14 @@ public class Projectile : MonoBehaviour
 
     Vector2 objectPosition;
 
+<<<<<<< Updated upstream
+=======
+    [SerializeField] PlayerHealth playerHealth;
+
+    [SerializeField] int damage;
+
+    public float speedModifier;
+>>>>>>> Stashed changes
     //Rotate Stuff
     private Vector2 currentPosition;
     private Vector2 previousPosition;
@@ -119,6 +127,15 @@ public class Projectile : MonoBehaviour
         }
 
         Explode();
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == ("Player"))
+        {
+            playerHealth.TakeDamage(damage);
+            Destroy(gameObject);
+        }
     }
 
     void RotateInMoveDirection()
