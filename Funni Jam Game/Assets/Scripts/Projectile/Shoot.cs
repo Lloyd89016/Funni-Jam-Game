@@ -6,12 +6,10 @@ public class Shoot : MonoBehaviour
 {
     public GameObject projectile;
     public LayerMask shootLayerMask;
-    public Shoot shoot;
+
     public GameObject projectileRoute;
     public ProjectileRoute projectileRouteScript;
 
-    [SerializeField] Transform firePoint;
- 
     void Start()
     {
         projectileRouteScript = projectileRoute.GetComponent<ProjectileRoute>();
@@ -19,13 +17,11 @@ public class Shoot : MonoBehaviour
 
     protected void ShootProjectile(Vector3 aimPoint)
     {
-    
-
         //Sets up the route for the bullet
         projectileRouteScript.Setup(transform.position, WhereToShoot(aimPoint));
 
         //Instanitates the bullet and sets variables
-        GameObject new_projectile = Instantiate(projectile, firePoint);
+        GameObject new_projectile = Instantiate(projectile);
         new_projectile.transform.position = transform.position;
         new_projectile.GetComponent<Projectile>().routes[0] = projectileRoute.transform;
         new_projectile.GetComponent<Projectile>().aimPoint = aimPoint;

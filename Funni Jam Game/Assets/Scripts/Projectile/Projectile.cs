@@ -6,7 +6,7 @@ public class Projectile : MonoBehaviour
 {
     [Header("Genral")]
 
-    public bool doCurve;
+    [SerializeField] bool doCurve;
 
     [SerializeField] Transform objectSize;
 
@@ -28,10 +28,6 @@ public class Projectile : MonoBehaviour
 
     Vector2 objectPosition;
 
-    [SerializeField] PlayerHealth playerHealth;
-
-    [SerializeField] int damage;
-
     //Rotate Stuff
     private Vector2 currentPosition;
     private Vector2 previousPosition;
@@ -48,7 +44,6 @@ public class Projectile : MonoBehaviour
 
     public Vector3 aimPoint;
 
-    [SerializeField] bool doShootShake;
     void Start()
     {
         routeToGo = 0;
@@ -60,15 +55,8 @@ public class Projectile : MonoBehaviour
         }
         else
         {
-
             target = aimPoint - transform.position;
             target *= 10;
-        }
-
-        if(doShootShake == true)
-        {
-            FindObjectOfType<screenShake>().ShakeEventShoot();
-
         }
     }
 
@@ -133,15 +121,6 @@ public class Projectile : MonoBehaviour
         Explode();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == ("Player"))
-        {
-            playerHealth.TakeDamage(damage);
-            Destroy(gameObject);
-        }
-    }
-
     void RotateInMoveDirection()
     {
         currentPosition = transform.position;
@@ -168,10 +147,10 @@ public class Projectile : MonoBehaviour
             explosion.transform.position = transform.position;
         }
 
-        if(doCurve == true)
+        if(playScreenShake == true)
         {
             //call screen shake
-            FindObjectOfType<screenShake>().ShakeEventExplode();
+            FindObjectOfType<screenShake>().ShakeEvent();
         }
 
         Destroy(gameObject);

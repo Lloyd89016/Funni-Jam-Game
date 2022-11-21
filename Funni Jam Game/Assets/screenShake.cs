@@ -7,15 +7,11 @@ public class screenShake : MonoBehaviour
     public UnityEvent explode;
     public UnityEvent shoot;
 
-    public void ShakeEventExplode()
+    public void ShakeEvent()
     {
         //explode shake
         explode.Invoke();
         //cupcake shake
-
-    }
-    public void ShakeEventShoot()
-    {
         shoot.Invoke();
 
     }
