@@ -184,23 +184,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee751e85566b16d418d64b36c44bccd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  doCurve: 0
+  objectSize: {fileID: 2106765659}
+  playScreenShake: 0
+  projectileExplosion: {fileID: 0}
   routes:
   - {fileID: 0}
-  objectPosition: {x: 0, y: 0}
-  playerHealth: {fileID: 0}
-  damage: 20
-  speedModifier: 0
-  projectileExplosion: {fileID: 0}
-  playScreenShake: 0
   targetLayer:
     serializedVersion: 2
     m_Bits: 128
+  speedModifier: 0
+  playerHealth: {fileID: 0}
+  damage: 20
   layerMask:
     serializedVersion: 2
     m_Bits: 0
-  objectSize: {fileID: 2106765659}
-  doCurve: 1
   speed: 0
+  aimPoint: {x: 0, y: 0, z: 0}
 --- !u!96 &573543159
 TrailRenderer:
   serializedVersion: 2
@@ -319,7 +319,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
