@@ -140,6 +140,13 @@ public class Projectile : MonoBehaviour
             playerHealth.TakeDamage(damage);
             Destroy(gameObject);
         }
+
+        if (collision.gameObject.tag == ("Player"))
+        {
+            playerHealth.TakeDamage(damage);
+            Destroy(gameObject);
+        }
+
     }
 
     void RotateInMoveDirection()
