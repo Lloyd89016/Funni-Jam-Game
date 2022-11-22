@@ -38,6 +38,11 @@ public class PlayerHealth : Health
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+    }
+
     #region debugButton
     // debug button heal
     public void heal()
