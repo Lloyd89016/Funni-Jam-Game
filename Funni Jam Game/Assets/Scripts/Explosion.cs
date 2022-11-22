@@ -53,7 +53,10 @@ public class Explosion : MonoBehaviour
         Health new_healthScript = hit.gameObject.GetComponent<Health>();
         if (new_healthScript != null)
         {
-            new_healthScript.health -= 1;
+            if(Vector2.Distance(transform.position, hit.gameObject.transform.position) <= 2)
+            {
+                new_healthScript.health -= 1;
+            }
         }
     }
 
