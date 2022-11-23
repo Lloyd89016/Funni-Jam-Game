@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
@@ -9,6 +10,8 @@ public class Projectile : MonoBehaviour
     [SerializeField] bool doCurve;
 
     [SerializeField] Transform objectSize;
+
+  
 
     //Bullet Explosion
     [SerializeField] bool playScreenShake;
@@ -44,8 +47,38 @@ public class Projectile : MonoBehaviour
 
     public Vector3 aimPoint;
 
+    [SerializeField] int Damage;
+
+    [SerializeField] bool cupCake;
+  
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Enemy")
+        {
+            Health new_healthScript = collision.gameObject.GetComponent<Health>();
+            if (new_healthScript != null)
+            {
+                if (Vector2.Distance(transform.position, collision.gameObject.transform.position) <= 2)
+                {
+                    new_healthScript.health -= Damage;
+                    Explode();
+
+                }
+            }
+        }
+    
+    }
+
+
     void Start()
     {
+
+        if (cupCake == true)
+        {
+            FindObjectOfType<screenShake>().ShakeEventShoot();
+        }
+
         routeToGo = 0;
         tParam = 0f;
 
@@ -59,6 +92,7 @@ public class Projectile : MonoBehaviour
             target *= 10;
         }
     }
+
 
     void Update()
     {
@@ -75,16 +109,7 @@ public class Projectile : MonoBehaviour
                 Explode();
             }
         }
-        else if(doCurve == false)
-        {
-            //Checks to see if the projectile is touching anything
-            Collider2D hit2 = Physics2D.OverlapBox(transform.position, objectSize.localScale, 0, layerMask);
-
-            if (hit2 != null)
-            {
-                Explode();
-            }
-        }
+ 
 
         //Moves the projectile
         if(doCurve == false)
@@ -150,7 +175,7 @@ public class Projectile : MonoBehaviour
         if(playScreenShake == true)
         {
             //call screen shake
-            FindObjectOfType<screenShake>().ShakeEvent();
+            FindObjectOfType<screenShake>().ShakeEventExplode();
         }
 
         Destroy(gameObject);

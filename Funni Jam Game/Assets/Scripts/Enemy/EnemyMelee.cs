@@ -24,7 +24,7 @@ public class EnemyMelee : Shoot
 
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnTriggerStay2D(Collision2D collision)
     {
         if (Cooldown <= 0)
         {
