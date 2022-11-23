@@ -24,7 +24,7 @@ public class EnemyMelee : Shoot
 
     }
 
-    private void OnTriggerStay2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
         if (Cooldown <= 0)
         {
@@ -36,6 +36,7 @@ public class EnemyMelee : Shoot
                     if (Vector2.Distance(transform.position, collision.gameObject.transform.position) <= 2)
                     {
                         new_healthScript.health -= Damage;
+                        Cooldown = maxCooldown;
                     }
                 }
             }

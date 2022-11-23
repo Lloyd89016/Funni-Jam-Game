@@ -332,7 +332,7 @@ MonoBehaviour:
     m_Bits: 0
   projectileRoute: {fileID: 0}
   projectileRouteScript: {fileID: 0}
-  Cooldown: 0.001
+  Cooldown: 0.0025
   Damage: 1
 --- !u!61 &4076946463978777891
 BoxCollider2D:
