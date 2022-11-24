@@ -10,6 +10,7 @@ public class EnemyThrow : Shoot
     [SerializeField] LayerMask wallLayerMask;
     Vector3 offset;
     [SerializeField] float Cooldown = 5;
+    [SerializeField] float ShootCooldown = 1;
     private float maxCooldown;
 
     [SerializeField] int Damage = 1;
@@ -26,7 +27,7 @@ public class EnemyThrow : Shoot
         Cooldown = 0;
 
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        InvokeRepeating("CanShoot", Random.Range(.005f, 1.005f), 1);
+        InvokeRepeating("CanShoot", Random.Range(.005f, 1.005f), ShootCooldown);
 
         //Sets the offset that will be added to the player pos to get where the ai shoots
         offset = new Vector2(Random.Range(-1, 1), Random.Range(-1, 1));

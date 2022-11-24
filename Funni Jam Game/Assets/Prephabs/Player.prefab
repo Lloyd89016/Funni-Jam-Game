@@ -96,9 +96,10 @@ GameObject:
   - component: {fileID: 571215506436454681}
   - component: {fileID: 571215506436454680}
   - component: {fileID: 571215506436454687}
-  - component: {fileID: 571215506436454683}
   - component: {fileID: 571215506436454682}
   - component: {fileID: 571215506436454685}
+  - component: {fileID: 1655404168}
+  - component: {fileID: 1655404174}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -205,32 +206,6 @@ MonoBehaviour:
   health: 100
   healthBar: {fileID: 571215507340783220}
   maxHealth: 100
---- !u!61 &571215506436454683
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 571215506436454686}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: e9ee2065c0fe38e4b9373e8d3250f251, type: 2}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.014345959, y: -0.014930785}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1.25, y: 1.9375}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.593452, y: 0.97422945}
-  m_EdgeRadius: 0
 --- !u!50 &571215506436454682
 Rigidbody2D:
   serializedVersion: 4
@@ -272,6 +247,37 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1655404168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 571215506436454686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94d4d5c23e912df4086ed5ad0913321a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shoot: {fileID: 571215507736231779}
+  CupCake: {fileID: 124557092064935028, guid: 90342fa2c1afa43429c9b28584ff2efb, type: 3}
+  Doughnut: {fileID: 6710696016102910579, guid: c2737e87b10b61443b24d9b1d6bdefaa, type: 3}
+--- !u!70 &1655404174
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 571215506436454686}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0101469755, y: -0.015220463}
+  m_Size: {x: 0.72095835, y: 0.9695591}
+  m_Direction: 0
 --- !u!1 &571215507002425627
 GameObject:
   m_ObjectHideFlags: 0
@@ -509,7 +515,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -551.61035, y: -258.26965}
+  m_AnchoredPosition: {x: -551.68, y: -258.29}
   m_SizeDelta: {x: -1002, y: -420}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &571215507340783221

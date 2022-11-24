@@ -160,7 +160,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: 602473b4e00b1dd4bb5ccb968c8e8127, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 676fddfd8656c434ab8efe763d1b7d17, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -183,21 +183,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee751e85566b16d418d64b36c44bccd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  doCurve: 1
+  objectSize: {fileID: 2106765659}
+  playScreenShake: 0
+  projectileExplosion: {fileID: 0}
   routes:
   - {fileID: 0}
-  objectPosition: {x: 0, y: 0}
-  speedModifier: 0
-  projectileExplosion: {fileID: 0}
-  playScreenShake: 0
   targetLayer:
     serializedVersion: 2
     m_Bits: 128
+  speedModifier: 0
   layerMask:
     serializedVersion: 2
     m_Bits: 0
-  objectSize: {fileID: 2106765659}
-  doCurve: 1
   speed: 0
+  aimPoint: {x: 0, y: 0, z: 0}
+  Damage: 0
+  cupCake: 0
 --- !u!96 &573543159
 TrailRenderer:
   serializedVersion: 2
