@@ -15,8 +15,11 @@ public class TopDownMovement001 : MonoBehaviour
     [SerializeField] Animator playerAnimator;
 
     bool isDashing;
+    bool canDash = true;
 
-    [SerializeField] float dashingCooldown;
+    [SerializeField] float dashCooldown;
+    [SerializeField] float dashSpeed;
+    [SerializeField] float dashLength;
 
     void Start()
     {
@@ -25,16 +28,16 @@ public class TopDownMovement001 : MonoBehaviour
 
     void Update()
     {
-        // Gives a value between -1 and 1
-        horizontal = Input.GetAxisRaw("Horizontal"); // -1 is left
-        vertical = Input.GetAxisRaw("Vertical"); // -1 is down
+        if(isDashing == false)
+        {
+            // Gives a value between -1 and 1
+            horizontal = Input.GetAxisRaw("Horizontal"); // -1 is left
+            vertical = Input.GetAxisRaw("Vertical"); // -1 is down
+        }
 
-        if (Input.GetKeyDown(KeyCode.Space) && isDashing == false)
-        {         
-            runSpeed *= 3;
-            playerAnimator.SetBool("isWalking", false);
-            Invoke("StopDashing", .3f);
-            isDashing = true;
+        if (Input.GetKeyDown(KeyCode.Space) && canDash == true)
+        {
+            Dash();
         }
 
         if(isDashing == false)
@@ -45,7 +48,7 @@ public class TopDownMovement001 : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (horizontal != 0 && vertical != 0) // Check for diagonal movement
+        if (horizontal != 0 && vertical != 0 && isDashing == false) // Check for diagonal movement
         {
             // limit movement speed diagonally, so you move at 70% speed
             horizontal *= moveLimiter;
@@ -66,15 +69,40 @@ public class TopDownMovement001 : MonoBehaviour
             playerAnimator.SetBool("isWalking", false);
         }
     }
+    
+    void Dash()
+    {
+        canDash = false;
+        isDashing = true;
+        runSpeed *= dashSpeed;
+        playerAnimator.SetBool("isWalking", false);
+        Invoke("StopDashing", dashLength);
+    }
 
     void StopDashing()
     {
-        runSpeed /= 3;
-        Invoke("ChangeIsDashingVariable", dashingCooldown);
+        StartCoroutine(LerpNumber(runSpeed, runSpeed /= dashSpeed, 1000f));
+        isDashing = false;
+
+        //Waits to let the player dash again
+        Invoke("LetPlayerDash", dashCooldown);
     }
 
-    void ChangeIsDashingVariable()
+    void LetPlayerDash()
     {
-        isDashing = false;
+        canDash = true;
+    }
+
+    IEnumerator LerpNumber(float valueToChange, float endValue, float duration)
+    {
+        float time = 0;
+        float startValue = valueToChange;
+        while (time < duration)
+        {
+            valueToChange = Mathf.Lerp(startValue, endValue, time / duration);
+            time += Time.deltaTime;
+            yield return null;
+        }
+        valueToChange = endValue;
     }
 }
