@@ -6,11 +6,12 @@ public class TopDownMovement001 : MonoBehaviour
 {
     Rigidbody2D body;
 
-    [SerializeField] float horizontal;
-    [SerializeField] float vertical;
+    float horizontal;
+    float vertical;
     float moveLimiter = 0.7f;
 
     [SerializeField] float runSpeed = 20.0f;
+    float startingSpeed;
 
     [SerializeField] Animator playerAnimator;
 
@@ -21,9 +22,12 @@ public class TopDownMovement001 : MonoBehaviour
     [SerializeField] float dashSpeed;
     [SerializeField] float dashLength;
 
+    [SerializeField] TrailRenderer trailRenderer;
+
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
+        startingSpeed = runSpeed;
     }
 
     void Update()
@@ -37,7 +41,7 @@ public class TopDownMovement001 : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && canDash == true)
         {
-            Dash();
+            StartDash();
         }
 
         if(isDashing == false)
@@ -70,20 +74,54 @@ public class TopDownMovement001 : MonoBehaviour
         }
     }
     
-    void Dash()
+    void StartDash()
     {
         canDash = false;
         isDashing = true;
-        runSpeed *= dashSpeed;
         playerAnimator.SetBool("isWalking", false);
-        Invoke("StopDashing", dashLength);
+        trailRenderer.enabled = true;
+
+        //Dash Movement
+        StopAllCoroutines();
+        runSpeed = startingSpeed;
+        StartCoroutine(Dash(dashLength / 2));
+    }
+
+    IEnumerator Dash(float duration)
+    {
+        //Speeds up
+        float endValue = runSpeed *= dashSpeed;
+
+        float time = 0;
+        float startValue = runSpeed /= dashSpeed;
+        while (time < duration)
+        {
+            runSpeed = Mathf.Lerp(startValue, endValue, time / duration);
+            time += Time.deltaTime;
+            yield return null;
+        }
+        runSpeed = endValue;
+
+        //Slows down
+        endValue = runSpeed /= dashSpeed;
+
+        time = 0;
+        startValue = runSpeed *= dashSpeed;
+        while (time < duration)
+        {
+            runSpeed = Mathf.Lerp(startValue, endValue, time / duration);
+            time += Time.deltaTime;
+            yield return null;
+        }
+        runSpeed = endValue;
+
+        StopDashing();
     }
 
     void StopDashing()
     {
-        StartCoroutine(LerpNumber(runSpeed, runSpeed /= dashSpeed, 1000f));
+        trailRenderer.enabled = false;
         isDashing = false;
-
         //Waits to let the player dash again
         Invoke("LetPlayerDash", dashCooldown);
     }
@@ -91,18 +129,5 @@ public class TopDownMovement001 : MonoBehaviour
     void LetPlayerDash()
     {
         canDash = true;
-    }
-
-    IEnumerator LerpNumber(float valueToChange, float endValue, float duration)
-    {
-        float time = 0;
-        float startValue = valueToChange;
-        while (time < duration)
-        {
-            valueToChange = Mathf.Lerp(startValue, endValue, time / duration);
-            time += Time.deltaTime;
-            yield return null;
-        }
-        valueToChange = endValue;
     }
 }
