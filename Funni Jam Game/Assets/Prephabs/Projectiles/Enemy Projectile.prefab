@@ -186,7 +186,7 @@ MonoBehaviour:
   doCurve: 1
   objectSize: {fileID: 2106765659}
   playScreenShake: 0
-  projectileExplosion: {fileID: 0}
+  projectileExplosion: {fileID: 5426256521111922872, guid: b24ee1c23956c4042b56995296c94f3c, type: 3}
   routes:
   - {fileID: 0}
   targetLayer:

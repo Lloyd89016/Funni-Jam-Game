@@ -199,6 +199,8 @@ MonoBehaviour:
     m_Bits: 887
   speed: 15
   aimPoint: {x: 0, y: 0, z: 0}
+  Damage: 0
+  cupCake: 0
 --- !u!96 &4955343205241083222
 TrailRenderer:
   serializedVersion: 2

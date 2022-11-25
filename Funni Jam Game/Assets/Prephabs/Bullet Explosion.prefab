@@ -4827,3 +4827,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 4
   power: 200
+  targetLayermask:
+    serializedVersion: 2
+    m_Bits: 1536

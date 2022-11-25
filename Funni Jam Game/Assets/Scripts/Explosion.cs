@@ -8,6 +8,8 @@ public class Explosion : MonoBehaviour
     [SerializeField] float radius = 5.0F;
     [SerializeField] float power = 10.0F;
 
+    [SerializeField] LayerMask targetLayermask;
+
     private ParticleSystem particleEffect;
 
     void Start()
@@ -29,7 +31,7 @@ public class Explosion : MonoBehaviour
     {
         //Gets all of the objects in the explosion radius, then applys explosion fource.
         Vector3 explosionPos = transform.position;
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(explosionPos, radius);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(explosionPos, radius, targetLayermask);
         foreach (Collider2D hit in colliders)
         {
             DealDamage(hit);
