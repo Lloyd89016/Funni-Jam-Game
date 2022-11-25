@@ -13165,7 +13165,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 7c92e9738b720334c98c5abb533895cf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -42582,7 +42582,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 571215506436454680, guid: e6c0f1e53fe0f43439ade9de3d733226, type: 3}
       propertyPath: dashLength
-      value: 0.16
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 571215506436454680, guid: e6c0f1e53fe0f43439ade9de3d733226, type: 3}
       propertyPath: dashCooldown
