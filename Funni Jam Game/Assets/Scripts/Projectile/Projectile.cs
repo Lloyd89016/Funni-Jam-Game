@@ -73,7 +73,6 @@ public class Projectile : MonoBehaviour
 
     void Start()
     {
-
         if (cupCake == true)
         {
             FindObjectOfType<screenShake>().ShakeEventShoot();
@@ -92,7 +91,6 @@ public class Projectile : MonoBehaviour
             target *= 10;
         }
     }
-
 
     void Update()
     {
@@ -118,6 +116,7 @@ public class Projectile : MonoBehaviour
         }
     }
 
+    //Follows the bezier curve route
     private IEnumerator FollowCurve(int routeNum)
     {
         Vector2 p0 = routes[routeNum].GetChild(0).position;
@@ -165,9 +164,9 @@ public class Projectile : MonoBehaviour
 
     void Explode()
     {
-        if(projectileExplosion != null)
+        //Spawns in the explosion prephab
+        if (projectileExplosion != null)
         {
-            //Spawns in the explosion object
             GameObject explosion = Instantiate(projectileExplosion);
             explosion.transform.position = transform.position;
         }

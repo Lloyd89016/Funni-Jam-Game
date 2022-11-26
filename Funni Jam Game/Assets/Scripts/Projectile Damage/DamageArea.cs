@@ -11,7 +11,7 @@ public class DamageArea : MonoBehaviour
 
     void Explode()
     {
-        //Gets all of the objects in the explosion radius, then applys explosion fource.
+        //Gets all of the objects in the explosion radius, then deals damage
         Vector3 explosionPos = transform.position;
         Collider2D[] colliders = Physics2D.OverlapCircleAll(explosionPos, 1);
         foreach (Collider2D hit in colliders)

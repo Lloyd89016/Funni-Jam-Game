@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Derived from "Shoot" class
 public class PlayerGun : Shoot
 {
     public float coolDownSpeed;

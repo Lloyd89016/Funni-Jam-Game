@@ -78,7 +78,9 @@ public class TopDownMovement001 : MonoBehaviour
     {
         canDash = false;
         isDashing = true;
+        //Stops the walk animation
         playerAnimator.SetBool("isWalking", false);
+
         trailRenderer.enabled = true;
 
         //Dash Movement
@@ -122,6 +124,7 @@ public class TopDownMovement001 : MonoBehaviour
     {
         trailRenderer.enabled = false;
         isDashing = false;
+
         //Waits to let the player dash again
         Invoke("LetPlayerDash", dashCooldown);
     }

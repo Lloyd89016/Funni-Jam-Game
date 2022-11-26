@@ -21,6 +21,7 @@ public class Explosion : MonoBehaviour
 
     void Update()
     {
+        //When the particle effect is done playing the object gets destoryed
         if (particleEffect.isStopped)
         {
             Destroy(gameObject);
